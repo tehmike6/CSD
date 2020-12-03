@@ -1,0 +1,6 @@
+max: mixalis mpastaki 4406 10
+min: giannis hamat 3434 7
+average: 9
+giannis hamat 3434 7
+marileni sinioraki 4403 10
+mixalis mpastaki 4406 10
