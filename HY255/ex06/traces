@@ -1,0 +1,156 @@
+ /*Text Section*/
+/*Fuction readString*/
+
+   0x8048aac <readString>:      push   %ebp        // Initializes the stack pointer esp and stack base pointer ebp.
+   0x8048aad <readString+1>:    mov    %esp,%ebp   // Helps with the initialization by moving esp to ebp 
+   0x8048aaf <readString+3>:    sub    $0x48,%esp  // points the esp pointer at the right address.
+
+   0x8048ab2 <readString+6>:    movl   $0x0,-0xc(%ebp)   // int i =0;
+
+   0x8048ab9 <readString+13>:   mov    0x80d4ba4,%eax    //
+   0x8048abe <readString+18>:   sub    $0xc,%esp         // Prepares the While(1) loop
+
+   0x8048ac1 <readString+21>:   push   %eax              // Prepares to call getc
+   0x8048ac2 <readString+22>:   call   0x8050880 <getc>  // calls the fuction 
+   0x8048ac7 <readString+27>:   add    $0x10,%esp        // c = fgetc()
+   0x8048aca <readString+30>:   mov    %eax,-0x10(%ebp)  //
+
+   0x8048acd <readString+33>:   cmpl   $0xffffffff,-0x10(%ebp) // if((c == EOF) || (c=='\n'))
+   0x8048ad1 <readString+37>:   je     0x8048aeb <readString+63>  //
+   0x8048ad3 <readString+39>:   cmpl   $0xa,-0x10(%ebp)           //
+   0x8048ad7 <readString+43>:   je     0x8048aeb <readString+63>  // This chunk of code does what was discribed above.
+
+   0x8048ad9 <readString+45>:   mov    -0xc(%ebp),%eax         // else{ buf[i++] = c;}
+   0x8048adc <readString+48>:   lea    0x1(%eax),%edx          //
+   0x8048adf <readString+51>:   mov    %edx,-0xc(%ebp)         //
+   0x8048ae2 <readString+54>:   mov    -0x10(%ebp),%edx        //
+   0x8048ae5 <readString+57>:   mov    %dl,-0x3c(%ebp,%eax,1)  // Explained above.
+
+   0x8048ae9 <readString+61>:   jmp    0x8048ab9 <readString+13>  // Jumps back to While(1)
+
+   0x8048aeb <readString+63>:   lea    -0x3c(%ebp),%edx  // buf[i] = 0;
+   0x8048aee <readString+66>:   mov    -0xc(%ebp),%eax   //
+   0x8048af1 <readString+69>:   add    %edx,%eax         // 
+   0x8048af3 <readString+71>:   movb   $0x0,(%eax)       //
+
+   0x8048af6 <readString+74>:   movl   $0x0,-0xc(%ebp)   // Last sections describes for (i = 0; i < BUFSIZE; i++){s[i] = buf[i];}
+   0x8048afd <readString+81>:   jmp    0x8048b18 <readString+108> // Jumps to the condition 
+   0x8048aff <readString+83>:   mov    -0xc(%ebp),%edx            //
+   0x8048b02 <readString+86>:   mov    0x8(%ebp),%eax             //
+   0x8048b05 <readString+89>:   add    %eax,%edx                  //
+   0x8048b07 <readString+91>:   lea    -0x3c(%ebp),%ecx           //
+   0x8048b0a <readString+94>:   mov    -0xc(%ebp),%eax            //
+   0x8048b0d <readString+97>:   add    %ecx,%eax                  //
+   0x8048b0f <readString+99>:   movzbl (%eax),%eax                //
+   0x8048b12 <readString+102>:  mov    %al,(%edx)                 //
+   0x8048b14 <readString+104>:  addl   $0x1,-0xc(%ebp)            //
+   0x8048b18 <readString+108>:  cmpl   $0x2b,-0xc(%ebp)           //i < BufSIZE; if right continue else leave
+   0x8048b1c <readString+112>:  jle    0x8048aff <readString+83>  //
+
+   0x8048b1e <readString+114>:  nop    //
+   0x8048b1f <readString+115>:  leave  // Return statment (return;)
+   0x8048b20 <readString+116>:  ret    //
+
+/*Fuciton Main*/
+   0x8048b21 <main>:    lea    0x4(%esp),%ecx   //
+   0x8048b25 <main+4>:  and    $0xfffffff0,%esp // mprotect((void*)((unsigned int)Name & 0xfffff000), 1,PROT_READ | PROT_WRITE | PROT_EXEC);
+   0x8048b28 <main+7>:  pushl  -0x4(%ecx)       //
+   0x8048b2b <main+10>: push   %ebp             //
+   0x8048b2c <main+11>: mov    %esp,%ebp        //
+   0x8048b2e <main+13>: push   %ecx             //
+   0x8048b2f <main+14>: sub    $0x4,%esp        //
+   0x8048b32 <main+17>: mov    $0x80d6620,%eax  //
+   0x8048b37 <main+22>: and    $0xfffff000,%eax //
+   0x8048b3c <main+27>: sub    $0x4,%esp        //
+   0x8048b3f <main+30>: push   $0x7             //
+   0x8048b41 <main+32>: push   $0x1             //
+   0x8048b43 <main+34>: push   %eax             // All this is for the fuction mprotect.
+   0x8048b44 <main+35>: call   0x805e1b0 <mprotect>   // calls the mprotect that has been initialized above.
+   0x8048b49 <main+40>: add    $0x10,%esp             //
+   0x8048b4c <main+43>: sub    $0xc,%esp              // Finds the address of the printf
+   0x8048b4f <main+46>: push   $0x80ab108             // Pushes the address to esp
+   0x8048b54 <main+51>: call   0x804f0a0 <puts>       // calls printf("What is your name?\n");
+   0x8048b59 <main+56>: add    $0x10,%esp             // Prepares to call
+   0x8048b5c <main+59>: sub    $0xc,%esp              // Finds the address of the readString
+   0x8048b5f <main+62>: push   $0x80d6620             // Pushes the address to esp
+   0x8048b64 <main+67>: call   0x8048aac <readString> // Calls readString(Name);
+   0x8048b69 <main+72>: add    $0x10,%esp             // Prepares to call
+   0x8048b6c <main+75>: sub    $0x8,%esp              // Finds the address of strcmp
+   0x8048b6f <main+78>: push   $0x80ab11b             // pushes to stack the first string thats going to be compared :  "Angelos Bilas"
+   0x8048b74 <main+83>: push   $0x80d6620             // pushes to stack the second string thats going to be compared : Name
+   0x8048b79 <main+88>: call   0x805afc0 <strcmp>     // calls strcmp(Name, "Angelos Bilas");
+   0x8048b7e <main+93>: add    $0x10,%esp             //
+   0x8048b81 <main+96>: test   %eax,%eax              // This serves as the if statement if (strcmp(Name, "Angelos Bilas") == 0)
+   0x8048b83 <main+98>: jne    0x8048b8c <main+107>   //
+   0x8048b85 <main+100>:        movb   $0x36,0x80d4748 // If right then grade = '6';
+   0x8048b8c <main+107>:        sub    $0x8,%esp         // prepeares to enviroment call
+   0x8048b8f <main+110>:        push   $0x80d6620        // pushes to stack "Thank you, %s.\n",Name where Name is in stack
+   0x8048b94 <main+115>:        push   $0x80ab129        // pushes to stack I recommend that you get a grade of %c on this assignment.\n",grade); where grade is in stack 
+   0x8048b99 <main+120>:        call   0x804eb20 <printf> // calls printf printf("Thank you, %s.\n", Name);
+                                                          //       printf("I recommend that you get a grade of %c on this assignment.\n",
+                                                          //       grade);
+   0x8048b9e <main+125>:        add    $0x10,%esp           //
+   0x8048ba1 <main+128>:        movzbl 0x80d4748,%eax       //
+   0x8048ba8 <main+135>:        movsbl %al,%eax             // exit(0);
+   0x8048bab <main+138>:        sub    $0x8,%esp            //
+
+/*Data Section */
+
+(gdb) print &grade
+   $1 = 0x80d46e8 <grade> "3" // We observe that in the data section there is a variable called grade at address "0x80d46e8"
+                              // That contains the character 3 in it 
+(gdb) print grade
+   $2 = 51 '3'
+                              // At data section there are all the global veriables that have been initialized.
+                              // The only global variable that is initialized is grade that is stored in the address above 
+                              // has char 3 as its value or 51 as ascii value.
+
+(gdb) print &Name
+$3 = (char (*)[44]) 0x80d65e0 <Name> // We observe that in bss section there is a pointer variable to char thats an array of 44 elements
+                                     // Its not initialized therefore it is being stored in address 0x80d65e0 with name <Name>
+
+                                     // At the BSS section there are all the global variables that have not been initialized
+                                     // Thats why Name is in there because its not initialized.
+                                     // Thats the only element in this section.
+
+Breakpoint 1, readString (s=0x80d65e0 <Name> "") at hello.c:22
+22         buf[i] = 0;
+(gdb) print $esp
+   $1 = (void *) 0xbffff5a8
+(gdb) print $ebp
+   $2 = (void *) 0xbffff5dc
+(gdb) x/52b $esp
+buffer:
+   0xbffff5a8:     77      73      107     101     -88     -80     10      8
+   0xbffff5b0:     127     -15     4       8       -128    72      13      8
+   0xbffff5b8:     10      0       0       0       18      0       0       0
+   0xbffff5c0:     1       0       0       0       116     -10     -1      -65
+   0xbffff5c8:     124     -10     -1      -65     1       0       0       0
+   0xbffff5d0:     52      -128    4       8       
+                                                 c : 10      0       0       0  
+   0xbffff5d8:  i: 4       0       0       0        -24     -11     -1      -65
+   0xbffff5e0:     79 Return
+(gdb) print &buf
+   $3 = (char (*)[44]) 0xbffff5a8
+(gdb) print &c
+   $4 = (int *) 0xbffff5d4
+(gdb) print &i
+   $5 = (int *) 0xbffff5d8
+
+
+   |               |
+   |---------------|<-------- esp ( 0xbffff5a8)
+   |     buf       | 
+   |---------------|<-------- 0xbffff5d0
+   |       c       |
+   |---------------|<-------- 0xbffff5d8
+   |       i       |
+   |---------------|<-------- 0xbffff5a8
+   |---------------|<-------- ebp  0xbffff5dc
+   |    old ebp    |
+   |---------------|<-------- 0x8047ae4 (esp + 60) return_address = 0xbffff5e4
+   |    ret addr   |
+   |---------------|
+   |               |
+   |               |
+   |               |
