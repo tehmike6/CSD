@@ -1,1 +1,1 @@
-Solutions for HY100 
+Solutions of csd courses
