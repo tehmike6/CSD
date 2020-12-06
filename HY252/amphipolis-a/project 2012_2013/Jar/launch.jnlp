@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="file:/C:/Users/USER/Documents/NetBeansProjects/Mike2/dist/" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>Tichu</title>
+        <vendor>USER</vendor>
+        <homepage href=""/>
+        <description>Tichu</description>
+        <description kind="short">Tichu</description>
+        
+        
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se version="1.6+"/>
+        <jar href="Tichu.jar" main="true"/>
+        
+        
+    </resources>
+    <application-desc main-class="main.Main">
+        
+    </application-desc>
+</jnlp>
