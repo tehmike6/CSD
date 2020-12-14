@@ -13,6 +13,8 @@
 
 #include "among_us.h"
 
+/*Global variable, represents an exception if a function returns and exception is 1 an error has occured in the function*/
+int exception = 0;
 /* Global variable, the Sentinel of the players tree */
 struct Player *players_sentinel;
 
@@ -92,12 +94,73 @@ unsigned int primes_g[650] = {
  *         0 on failure
  */
 int initialize() {
-	/**
-	*
-	*/
+    // Initialize the players
+    players_tree = (struct Player*) malloc(sizeof(struct Player));
+    if(players_tree == NULL ) return 0;
+    players_tree = NULL;
+
+    players_sentinel = (struct Player*) malloc(sizeof(struct Player));
+    if(players_sentinel == NULL ) return 0;
+    players_sentinel->evidence = -1;
+    players_sentinel->is_alien = -1;
+    players_sentinel->pid = -1;
+    players_sentinel->parent = NULL;
+    players_sentinel->lc = NULL;
+    players_sentinel->rc = NULL;
+    players_sentinel->tasks = NULL;
+    
     return 1;
 }
 
+/**
+ * @brief Creates a new player node
+ * 
+ * @param pid The Player's id
+ * 
+ * @param is_alien The variable that decides if a player is alien or not.
+ * @return Player pointer on success
+ *         null on failure
+ * 
+*/
+struct Player *new_player(int pid,int is_alien){
+    struct Player *new=(struct Player*)malloc(sizeof(struct Player));
+    if(new == NULL) exception = 1;
+
+    new->is_alien = is_alien;
+    new->pid = pid;
+    new->evidence = 0;
+    new->lc = players_sentinel;
+    new->rc = players_sentinel;
+    new->tasks = NULL;
+    new->parent = NULL;
+    return new;
+}
+
+/**
+ * @brief Insert a player using recursion.
+ * @param node The node that we are traversing.
+ * @param pid The player's unique id.
+ * @param is_alien The variable that decides if a player is alien or not.
+ * @return A Player node.
+ * 
+ * 
+*/
+struct Player* insert_player(struct Player *node,int pid,int is_alien){
+
+    if(node == players_sentinel){
+        return new_player(pid,is_alien);
+    }
+
+    if(node->pid < pid) {
+        node->rc = insert_player(node->rc, pid, is_alien);
+        node->rc->parent = node;
+    }
+    else if(node->pid > pid){
+        node->lc = insert_player(node->lc, pid ,is_alien);
+        node->lc->parent = node;
+    }
+    return node;
+}
 /**
  * @brief Register Player
  *
@@ -108,6 +171,21 @@ int initialize() {
  *         0 on failure
  */
 int register_player(int pid, int is_alien) {
+    
+    //Insert the player in the tree.
+    //Check if he is the first.
+    if(players_tree == NULL)
+        players_tree = new_player(pid,is_alien);
+    else
+        insert_player(players_tree,pid,is_alien);
+    //Check for exception
+    if(exception == 1){
+        exception = 0;
+        return 0;
+    }
+    printf("P<%d><%d>\n ",pid,is_alien);
+    print_players();
+
     return 1;
 }
 
@@ -235,12 +313,69 @@ int terminate() {
 }
 
 /**
+ * @brief Inorder Traversal of a Binary Search Tree
+ * @param node An polymorphic pointer of tree node
+ * @param delimiter An polymorphic pointer that points to where the traversal should stop.
+ * @param visit A function which declares the actions that will be done upon visiting a node.
+ * @param next_node A function that returns the next node that must be visited.
+ * 
+*/
+void inorder_traversal(void* node, 
+                        void* delimiter,
+                        void (*visit)(void* ),
+                        void* (*next_node)(void* ,char ))
+{
+    if(node != delimiter){
+        inorder_traversal(next_node(node,'l'),
+                        delimiter,
+                        visit,
+                        next_node);
+        visit(node);
+        inorder_traversal(next_node(node,'r'),
+                        delimiter,
+                        visit,
+                        next_node);
+        
+    }
+}
+
+/**
+ * @brief Visits a Player node and prints the players pid and is_alien.
+ * @param node The node that will be visited.
+ * 
+*/
+void visit_player(struct Player *node){
+    printf("<pid%d:%d>",node->pid,node->is_alien);
+}
+
+/**
+ * @brief Returns the next player node based on the direction.
+ * @param node The player node that will return a child.
+ * @param direction The choice of which child will be returned.
+ * @return The child of node.
+ * 
+*/
+struct Player* next_player(struct Player *node, char direction){
+    switch(direction){
+        case 'r': 
+            return node->rc;
+        case 'l': 
+            return node->lc;
+        default:
+            return NULL;
+    }
+}
+
+/**
  * @brief Print Players
  *
  * @return 1 on success
  *         0 on failure
  */
 int print_players() {
+    printf("Players=");
+    inorder_traversal(players_tree,players_sentinel,(void*)&visit_player,(void*)&next_player);
+    printf("\nDONE\n");
     return 1;
 }
 

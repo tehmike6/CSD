@@ -31,7 +31,7 @@ struct Player
     int pid;                        /*Player's identifier*/
     int is_alien;                   /*Alien flag*/
     int evidence;                   /*Amount of evidence*/
-    struct Player *parrent;         /*Pointer to the parent node*/
+    struct Player *parent;         /*Pointer to the parent node*/
     struct Player *lc;              /*Pointer to the left child node*/
     struct Player *rc;              /*Pointer to the right child node*/
     struct Task *tasks;             /*Pointer to the head of player's task tree*/
