@@ -229,6 +229,19 @@ int hash(int key){
     return (((a*key + b) % p) % m);
 }
 
+
+struct HT_Task *new_task(int tid, int difficulty){
+    struct HT_Task *task = (struct HT_Task*)malloc(sizeof(struct HT_Task));
+    if(task == NULL){
+        exception = 1;
+        return NULL;   
+    }
+    task->tid = tid;
+    task->difficulty = difficulty;
+    task->next = NULL;
+    return task;
+}
+
 /**
  * @brief Insert Task in the general task hash table
  *
@@ -240,6 +253,22 @@ int hash(int key){
  *         0 on failure
  */
 int insert_task(int tid, int difficulty) {
+    int position = hash(tid);
+    struct HT_Task *task = new_task(tid,difficulty);
+    if(exception == 1){
+        exception = 0;
+        return 0;
+    }
+
+    if(general_tasks_ht.tasks[position] == NULL) // At the position there are no other tasks.
+        general_tasks_ht.tasks[position] = task;
+    else{ // At the position there are other tasks so we must insert at the start of the chain.
+        task->next = general_tasks_ht.tasks[position];
+        general_tasks_ht.tasks[position] = task;
+    }
+    general_tasks_ht.count++;
+    print_tasks();
+
     return 1;
 }
 
@@ -354,8 +383,8 @@ int terminate() {
 
 /**
  * @brief Inorder Traversal of a Binary Search Tree
- * @param node An polymorphic pointer of tree node
- * @param delimiter An polymorphic pointer that points to where the traversal should stop.
+ * @param node A polymorphic pointer of tree node
+ * @param delimiter A polymorphic pointer that points to where the traversal should stop.
  * @param visit A function which declares the actions that will be done upon visiting a node.
  * @param next_node A function that returns the next node that must be visited.
  * 
@@ -426,6 +455,19 @@ int print_players() {
  *         0 on failure
  */
 int print_tasks() {
+    int i;
+    struct HT_Task *node;
+    if(general_tasks_ht.count == 0) return 0;
+
+    for(i=0; i<m; i++){
+        printf(" Chain %d:",i);
+        node = general_tasks_ht.tasks[i];
+        while(node != NULL) {
+            printf("<%d,%d>",node->tid,node->difficulty);
+            node = node->next;
+        }
+
+    }
     return 1;
 }
 
