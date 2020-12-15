@@ -15,6 +15,8 @@
 
 /*Global variable, represents an exception if a function returns and exception is 1 an error has occured in the function*/
 int exception = 0;
+/*Global variables, that control the HashTable*/
+int a, b, p, m; // a and b are used in the hash function, p is the primes and m is the number of players.
 /* Global variable, the Sentinel of the players tree */
 struct Player *players_sentinel;
 
@@ -86,6 +88,24 @@ unsigned int primes_g[650] = {
                                 5099,   5101,   5107,   5113,   5119,   5147,   5153,   5167,   5171,   5179, 
                             };
 
+
+/**
+ * @brief Finds the prime that is greater than the max key value.
+ * @param max_key The key that has the max value.
+ * @return The prime that is greater than the max key value.
+ * 
+*/
+int find_prime(int max_key){
+    int index = 0;
+    while(max_key > primes_g[index]) index++;
+    
+    return primes_g[index];
+}
+
+int get_random_int(int floor,int ceiling){
+    return ((rand() % (ceiling - floor + 1)) + floor);
+}
+
 /**
  * @brief Optional function to initialize data structures that 
  *        need initialization
@@ -95,8 +115,6 @@ unsigned int primes_g[650] = {
  */
 int initialize() {
     // Initialize the players
-    players_tree = (struct Player*) malloc(sizeof(struct Player));
-    if(players_tree == NULL ) return 0;
     players_tree = NULL;
 
     players_sentinel = (struct Player*) malloc(sizeof(struct Player));
@@ -108,7 +126,21 @@ int initialize() {
     players_sentinel->lc = NULL;
     players_sentinel->rc = NULL;
     players_sentinel->tasks = NULL;
-    
+
+    //Initialize global variables for HashTable
+    p = find_prime(max_tid_g);
+    // Initialize the rand seed.
+    srand(time(NULL));
+    a = get_random_int(1, p-1);
+    b = get_random_int(0, p-1);
+
+    m = max_tasks_g;
+    //Initialize the Hashtable
+    general_tasks_ht.tasks = (struct HT_Task**)malloc(m * sizeof(struct HT_Task));
+    general_tasks_ht.count = 0;
+    int i;
+    for(i=0; i<m; i++) general_tasks_ht.tasks[i] = NULL;
+
     return 1;
 }
 
@@ -183,10 +215,18 @@ int register_player(int pid, int is_alien) {
         exception = 0;
         return 0;
     }
-    printf("P<%d><%d>\n ",pid,is_alien);
     print_players();
 
     return 1;
+}
+
+/**
+ * @brief Hash function
+ * @param key The key that based on it will return a different position.
+ * @return A position in the hashtable based on the key.
+*/
+int hash(int key){
+    return (((a*key + b) % p) % m);
 }
 
 /**
