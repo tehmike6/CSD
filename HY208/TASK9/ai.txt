@@ -1,0 +1,49 @@
+What is web scraping;
+	Web scraping is the idea of exctracting data from websites by running
+	a script and store that data to a database a json file, excel, csv, sql.
+Why is it used;
+	It can be used for personal reasons for example Let's say someone wants
+	to buy a phone from amazon. There are millions of sellers and millions
+	of phones to choose from. With web scraping someone can create a script
+	that with a specific set of rules lets say that we want the phone to have
+	4 gb of ram, android operating system, etc we can automatically make the script
+	search amazon for us and find us all the products that meet our requirments
+	and store them sorted by price in a database.
+How can AI improve it?
+	Web scraping applications and AI
+	Web scraping involves writing a software robot that can automatically 
+	collect data from various webpages. Simple bots might get the job done, 
+	but more sophisticated bots use AI to find the appropriate data on a 
+	page and copy it to the appropriate data field to be processed by an 
+	analytics application. A website can change it's format at anytime
+	a simple bot will fail it must be written again but a trained AI bot
+	can understand the changes and find the specific fields that it has been
+	trained to find.
+How it can be useful on a larger scale ?​
+	AI web scraping-based use cases include 
+	e-commerce
+	(websites like amazon control the market and thus scraping prices
+	and creating statistics and analytics can be very useful), 
+	labor research
+	(The skill of knowing how to create a web scraper is in demand), 
+	supply chain analytics
+	(Supply chain management software refers to applications
+	used in managin company's supply chain, supplier relationship and all 
+	business methods related to it)
+	, enterprise data capture 
+	(Intelligent enterprise data capture software 
+	uses different types of technologies such as optical character 
+	recognition, intelligent document recognition, and handwriting 
+	recognition. Optical character recognition technology is used to 
+	convert different types of machine-printed documents, such as image 
+	files, PDF files, or scanned paper documents, into searchable and 
+	editable data. Intelligent document recognition technology helps 
+	recognise and capture handwritten printed characters from image files. 
+	Handwriting recognition is the ability of a mobile device or a computer
+	 to take as input handwriting from sources such as printed physical 
+	documents, pictures and other devices, or to use handwriting as a 
+	direct input to a touchscreen and then interpret this as text)
+	and 
+	market research
+	( is the process fo collecting, analyzing and interpreting data 
+	about your target market consumers, competitors and the industry as a whole.)
