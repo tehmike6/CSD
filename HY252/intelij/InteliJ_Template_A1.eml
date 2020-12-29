@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component inherit-compiler-output="true" inheritJdk="true">
-	<output-test url="file://$MODULE_DIR$/out/test/InteliJ_Template_A1"/>
-	<exclude-output/>
-	<contentEntry url="file://$MODULE_DIR$"/>
-	<levels>
-		<level name="jfugue-4.0.3" value="project"/>
-	</levels>
-</component>
