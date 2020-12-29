@@ -2,9 +2,9 @@
 #                                                  #
 # file: Makefile                                   #
 #                                                  #
-# @Author:   Antonios Peris		           #
-# @Version:  20-10-2020                            #
-# @email:    csdp1196@csd.uoc.gr	           #
+# @Author:   Skerdi Basha		                   #
+# @Version:  1-12-2020                             #
+# @email:    sbash@csd.uoc.gr	               	   #
 #                                                  #
 # Generic Makefile for the needs of project        #
 #                                                  #

@@ -2,11 +2,11 @@
  *                                                             *
  * file: main.c                                                *
  *                                                             *
- * @Author  Antonios Peris                         		   	   *
- * @Version 20-10-2020                             			   *
- * @email   csdp1196@csd.uoc.gr                                *
+ * @Author  Skerdi Basha                         		   	   *
+ * @Version 1-12-2020                             			   *
+ * @email   sbash@csd.uoc.gr                                   *
  *                                                             *
- * @brief   Main function for the needs of cs-240 project 2020 *
+ * @brief   Main function for the needs of CS-240 project 2020 *
  *                                                             *
  ***************************************************************
  */
@@ -59,6 +59,16 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	}
 
+	// Read max enemy soldiers' number
+	fgets(buff, BUFFER_SIZE, fin);
+	sscanf(buff, "%d", &max_tasks_g);
+	DPRINT("Max number of tasks: %d\n", max_tasks_g)
+
+	// Read max enemy soldiers' ID
+	fgets(buff, BUFFER_SIZE, fin);
+	sscanf(buff, "%d", &max_tid_g);
+	DPRINT("Max task tid: %d\n", max_tid_g)
+
 	/* Initializations */
 	initialize();
 
@@ -75,8 +85,8 @@ int main(int argc, char **argv)
 		case '#':
 			break;
 
-		/* Register player
-			 * P <pid><is_alien> */
+		/* Register Player
+		 * P <pid> <is_alien> */
 		case 'P':
 		{
 			int pid;
@@ -96,8 +106,8 @@ int main(int argc, char **argv)
 			break;
 		}
 
-		/* Insert task
-			 * T <tid><difficulty>  */
+		/* Insert Task
+		 * T <tid> <difficulty>  */
 		case 'T':
 		{
 			int tid, difficulty;
@@ -118,7 +128,7 @@ int main(int argc, char **argv)
 		}
 
 		/* Distribute Tasks
-			 * D */
+		 * D */
 		case 'D':
 		{
 			sscanf(buff, "%c", &event);
@@ -137,132 +147,134 @@ int main(int argc, char **argv)
 		}
 
 		/* Implement Task
-			 * I <pid> <difficulty> */
+		 * I <pid> <tid> */
 		case 'I':
 		{
-			int pid,difficulty;
+			int pid, tid;
 
-			sscanf(buff, "%c %d %d", &event, &pid,&difficulty);
-			DPRINT("%c %d %d \n", event, pid,difficulty);
+			sscanf(buff, "%c %d %d", &event, &pid, &tid);
+			DPRINT("%c %d %d \n", event, pid, tid);
 
-			if (implement_task(pid,difficulty))
+			if (implement_task(pid, tid))
 			{
-				DPRINT("%c %d %d succeeded\n", event, pid,difficulty);
+				DPRINT("%c %d %d succeeded\n", event, pid, tid);
 			}
 			else
 			{
-				fprintf(stderr, "%c %d %d failed\n", event, pid,difficulty);
+				fprintf(stderr, "%c %d %d failed\n", event, pid, tid);
 			}
 
 			break;
 		}
 
 		/* Eject Player
-			 * E <pid>*/
+		 * E <pid_1> <pid_2>*/
 		case 'E':
 		{
-			int pid;
+			int pid_1, pid_2;
 
-			sscanf(buff, "%c %d", &event, &pid);
-			DPRINT("%c %d\n", event, pid);
+			sscanf(buff, "%c %d %d", &event, &pid_1, &pid_2);
+			DPRINT("%c %d %d\n", event, pid_1, pid_2);
 
-			if (eject_player(pid))
+			if (eject_player(pid_1, pid_2))
 			{
-				DPRINT("%c %d succeeded\n", event, pid);
+				DPRINT("%c %d %d succeeded\n", event, pid_1, pid_2);
 			}
 			else
 			{
-				fprintf(stderr, "%c %d failed\n", event, pid);
+				fprintf(stderr, "%c %d %d failed\n", event, pid_1, pid_2);
 			}
 
 			break;
 		}
 
-			/* Witness Ejection
-                 * W <pid> <pid_a> <number_of_witnesses>
-                 */
+		/* Witness Ejection
+		 * W <pid> <pid_a> <number_of_witnesses>
+		 */
 		case 'W':
 		{
-			int pid ,pid_a ,number_of_witnesses;
+			int pid_1, pid_2 ,pid_a ,number_of_witnesses;
 
-			sscanf(buff, "%c %d %d %d", &event, &pid ,&pid_a ,&number_of_witnesses);
-			DPRINT("%c %d %d %d\n", event, pid ,pid_a ,number_of_witnesses);
+			sscanf(buff, "%c %d %d %d %d", &event, &pid_1, &pid_2, &pid_a, &number_of_witnesses);
+			DPRINT("%c %d %d %d %d\n", event, pid_1, pid_2, pid_a, number_of_witnesses);
 
-			if (witness_eject(pid ,pid_a ,number_of_witnesses))
+			if (witness_eject(pid_1, pid_2, pid_a, number_of_witnesses))
 			{
-				DPRINT("%c %d %d %d succeded\n", event, pid ,pid_a ,number_of_witnesses);
+				DPRINT("%c %d %d %d %d succeded\n", event, pid_1, pid_2, pid_a, number_of_witnesses);
 			}
 			else
 			{
-				fprintf(stderr, "%c %d %d %d failed\n", event, pid ,pid_a ,number_of_witnesses);
+				fprintf(stderr, "%c %d %d %d %d failed\n", event, pid_1, pid_2, pid_a, number_of_witnesses);
 			}
 
 			break;
 		}
 
-		/* Sabbotage
-			 * S <number_of_tasks><pid> */
+		/* Sabotage
+		 * S <number_of_tasks> <pid> */
 		case 'S':
 		{
-			int pid,number_of_tasks;
+			int number_of_tasks, pid;
 
-			sscanf(buff, "%c %d %d\n", &event, &number_of_tasks,&pid);
-			DPRINT("%c %d %d\n", event, number_of_tasks,pid);
+			sscanf(buff, "%c %d %d\n", &event, &number_of_tasks, &pid);
+			DPRINT("%c %d %d\n", event, number_of_tasks, pid);
 
-			if (sabbotage(pid,number_of_tasks))
+			if (sabotage(number_of_tasks, pid))
 			{
-				DPRINT("%c %d %d succeeded\n", event,  number_of_tasks,pid);
+				DPRINT("%c %d %d succeeded\n", event, number_of_tasks, pid);
 			}
 			else
 			{
-				fprintf(stderr, "%c %d %d failed\n", event,  number_of_tasks,pid);
+				fprintf(stderr, "%c %d %d failed\n", event, number_of_tasks, pid);
 			}
 
 			break;
 		}
 
 		/* Vote
-			 * V <pid> <vote_evidence> */
+		 * V <pid_1> <pid_2> <vote_evidence> */
 		case 'V':
 		{
-			int pid, vote_evidence;
+			int pid_1, pid_2, vote_evidence;
 
-			sscanf(buff, "%c %d %d\n", &event, &pid, &vote_evidence);
-			DPRINT("%c %d %d\n", event, pid,vote_evidence);
+			sscanf(buff, "%c %d %d %d\n", &event, &pid_1, &pid_2, &vote_evidence);
+			DPRINT("%c %d %d %d\n", event, pid_1, pid_2, vote_evidence);
 
-			if (vote(pid,vote_evidence))
+			if (vote(pid_1, pid_2, vote_evidence))
 			{
-				DPRINT("%c %d %d succeeded\n", event,  pid,vote_evidence);
+				DPRINT("%c %d %d %d succeeded\n", event, pid_1, pid_2, vote_evidence);
 			}
 			else
 			{
-				fprintf(stderr, "%c %d %d failed\n", event,  pid,vote_evidence);
+				fprintf(stderr, "%c %d %d %d failed\n", event, pid_1, pid_2, vote_evidence);
 			}
 
 			break;
 		}
 
 		/* Give Away Work
-			 * G */
+		 * G <pid_1> <pid_2> */
 		case 'G':
 		{
-			sscanf(buff, "%c", &event);
-			DPRINT("%c\n", event);
+			int pid_1, pid_2;
 
-			if (give_work())
+			sscanf(buff, "%c %d %d", &event, &pid_1, &pid_2);
+			DPRINT("%c %d %d\n", event, pid_1, pid_2);
+
+			if (give_work(pid_1, pid_2))
 			{
-				DPRINT("%c succeeded\n", event);
+				DPRINT("%c %d %d succeeded\n", event, pid_1, pid_2);
 			}
 			else
 			{
-				fprintf(stderr, "%c failed\n", event);
+				fprintf(stderr, "%c %d %d failed\n", event, pid_1, pid_2);
 			}
 
 			break;
 		}
 
 		/* Terminate
-			 * F */
+		 * F */
 		case 'F':
 		{
 			sscanf(buff, "%c", &event);
@@ -279,8 +291,9 @@ int main(int argc, char **argv)
 
 			break;
 		}
+
 		/* Print Players
-			 * X */
+		 * X */
 		case 'X':
 		{
 			sscanf(buff, "%c", &event);
@@ -297,8 +310,9 @@ int main(int argc, char **argv)
 
 			break;
 		}
+
 		/* Print Tasks
-			 * Y */
+		 * Y */
 		case 'Y':
 		{
 			sscanf(buff, "%c", &event);
@@ -315,14 +329,15 @@ int main(int argc, char **argv)
 
 			break;
 		}
-		/* Print Stack
-			 * Z */
+
+		/* Print Priority Queue
+		 * Z */
 		case 'Z':
 		{
 			sscanf(buff, "%c", &event);
 			DPRINT("%c\n", event);
 
-			if (print_stack())
+			if (print_pq())
 			{
 				DPRINT("%c succeeded\n", event);
 			}
@@ -333,14 +348,15 @@ int main(int argc, char **argv)
 
 			break;
 		}
-		/* Print Players & Tasks list
-			 * F */
+
+		/* Print Players & Tasks tree
+		 * F */
 		case 'U':
 		{
 			sscanf(buff, "%c", &event);
 			DPRINT("%c\n", event);
 
-			if (print_double_list())
+			if (print_double_tree())
 			{
 				DPRINT("%c succeeded\n", event);
 			}
@@ -351,6 +367,7 @@ int main(int argc, char **argv)
 
 			break;
 		}
+
 		/* Empty line */
 		case '\n':
 			break;
