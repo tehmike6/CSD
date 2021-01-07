@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ab8aa51-cd63-47d6-bb65-155590026b2c" name="Default" comment="" />
+    <list default="true" id="6ab8aa51-cd63-47d6-bb65-155590026b2c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/ExerciseAmbiguity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/Human.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/LivingBeing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/MaterialObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A32/A21.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A32/a23_ekfonisi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A32/a24.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A33/a30.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/InteliJ_Template_A3/.idea/workspace.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -14,16 +36,20 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectId" id="1R9BgiweflcI2yE23Zmz1svjv2h" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ValidatorScript">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -46,6 +72,62 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="a24" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="csd.uoc.gr.A32.a24" />
+      <module name="InteliJ_Template_A3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="csd.uoc.gr.A32.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="a30" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="csd.uoc.gr.A33.a30" />
+      <module name="InteliJ_Template_A3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="csd.uoc.gr.A33.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="new_a23_ekfonisi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="csd.uoc.gr.A32.new_a23_ekfonisi" />
+      <module name="InteliJ_Template_A3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="csd.uoc.gr.A32.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="new_a24" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="csd.uoc.gr.A32.new_a24" />
+      <module name="InteliJ_Template_A3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="csd.uoc.gr.A32.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -78,6 +160,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ValidatorScript" />
+        <item itemvalue="Application.a30" />
+        <item itemvalue="Application.a24" />
+        <item itemvalue="Application.new_a24" />
+        <item itemvalue="Application.new_a23_ekfonisi" />
       </list>
     </recent_temporary>
   </component>
@@ -102,5 +188,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
