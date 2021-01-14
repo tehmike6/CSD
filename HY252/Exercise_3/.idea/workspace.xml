@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ab8aa51-cd63-47d6-bb65-155590026b2c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/ExerciseAmbiguity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/Human.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/LivingBeing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A31/MaterialObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A32/A21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A32/a23_ekfonisi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A32/a24.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/csd/uoc/gr/A33/a30.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/InteliJ_Template_A3/.idea/workspace.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="6ab8aa51-cd63-47d6-bb65-155590026b2c" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +35,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PhaseA_4406" />
     <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
   <component name="RunManager" selected="Application.ValidatorScript">
@@ -199,5 +188,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
