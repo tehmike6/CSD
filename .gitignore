@@ -5,3 +5,4 @@ log.txt
 *.o
 *.class
 *.jar
+*.DS_Store
