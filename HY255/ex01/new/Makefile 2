@@ -1,0 +1,4 @@
+main:
+	gcc -ansi -pedantic -Wall -o translateM translateM.c
+clean:
+	rm translateM 

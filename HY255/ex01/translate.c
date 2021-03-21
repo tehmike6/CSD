@@ -141,20 +141,20 @@ int choice(int input){
         SmallLet(input);
     }else if(input >= 193 && input <= 217){ /* Those are the values for A-W*/
         CapitalLet(input);
-    }else if(input >= 182 && input <= 191){ /*Those are the values for A-W with tonos*/
+    }else if(input >= 182 && input <= 191){ /*Those are the values for A-W with t*/
         CapitalLetT(input);
-    }else if(input >= 220 && input <= 223){ /* Those are the values for a,e,h,i with tonos */
+    }else if(input >= 220 && input <= 223){ /* Those are the values for a,e,h,i with t */
         SmallLetT_1(input);
-    }else if(input >= 252 && input <= 254){ /* Those are the values for y, o, w with tonos*/
+    }else if(input >= 252 && input <= 254){ /* Those are the values for y, o, w with t*/
         SmallLetT_2(input);
     }else if(input == 250 || input == 251){ /* Those are the values for i, y with dialytika*/
         SmallLetD(input);
     }else if(input == 218 || input == 219){ /* Those are the values for I, Y with dialytika*/
         CapitalLetD(input);
     }else if(input == 192){
-        printf("i\'\"");                    /* This prints the i with tonos and dialytika */
+        printf("i\'\"");                    /* This prints the i with t and dialytika */
     }else if(input == 224){
-        printf("y\'\"");                    /* This prints the y with tonos and dialytika */
+        printf("y\'\"");                    /* This prints the y with t and dialytika */
     }else{
         putchar(input);                     /* This line prints any character that is not a letter*/
     }
